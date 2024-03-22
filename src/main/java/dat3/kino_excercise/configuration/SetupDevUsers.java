@@ -1,5 +1,8 @@
-package dat3.rename_me.configuration;
+package dat3.kino_excercise.configuration;
 
+import dat3.kino_excercise.entity.Cinema;
+import dat3.kino_excercise.repository.CinemaRepository;
+import dat3.kino_excercise.service.CinemaService;
 import dat3.security.entity.Role;
 import dat3.security.entity.UserWithRoles;
 import dat3.security.repository.RoleRepository;
@@ -14,15 +17,18 @@ import java.util.NoSuchElementException;
 @Component
 public class SetupDevUsers implements ApplicationRunner {
 
+    CinemaRepository cinemaRepository;
+
     UserWithRolesRepository userWithRolesRepository;
     RoleRepository roleRepository;
     PasswordEncoder pwEncoder;
     String passwordUsedByAll;
 
-    public SetupDevUsers(UserWithRolesRepository userWithRolesRepository,RoleRepository roleRepository,PasswordEncoder passwordEncoder) {
+    public SetupDevUsers(UserWithRolesRepository userWithRolesRepository,RoleRepository roleRepository,PasswordEncoder passwordEncoder, CinemaRepository cinemaRepository) {
         this.userWithRolesRepository = userWithRolesRepository;
         this.roleRepository = roleRepository;
         this.pwEncoder = passwordEncoder;
+        this.cinemaRepository = cinemaRepository;
 
         passwordUsedByAll = "test12";
     }
@@ -66,5 +72,14 @@ public class SetupDevUsers implements ApplicationRunner {
         userWithRolesRepository.save(user2);
         userWithRolesRepository.save(user3);
         userWithRolesRepository.save(user4);
+
+
+        Cinema cinema1 = new Cinema();
+        cinema1.setId(1);
+        cinema1.setName("Biograf1");
+        cinema1.setNumberOfTheaters(2);
+        cinema1.setTotalCapacity(350);
+        cinemaRepository.save(cinema1);
+
     }
 }
