@@ -15,4 +15,35 @@ public class CinemaDto {
         this.numberOfTheaters = c.getNumberOfTheaters();
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getTotalCapacity() {
+        return totalCapacity;
+    }
+
+    public void setTotalCapacity(int totalCapacity) {
+        this.totalCapacity = totalCapacity;
+    }
+
+    public int getNumberOfTheaters() {
+        return numberOfTheaters;
+    }
+
+    public void setNumberOfTheaters(int numberOfTheaters) {
+        this.numberOfTheaters = numberOfTheaters;
+    }
 }

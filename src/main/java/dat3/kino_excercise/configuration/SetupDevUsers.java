@@ -1,7 +1,9 @@
 package dat3.kino_excercise.configuration;
 
 import dat3.kino_excercise.entity.Cinema;
+import dat3.kino_excercise.entity.Theater;
 import dat3.kino_excercise.repository.CinemaRepository;
+import dat3.kino_excercise.repository.TheaterRepository;
 import dat3.kino_excercise.service.CinemaService;
 import dat3.security.entity.Role;
 import dat3.security.entity.UserWithRoles;
@@ -17,6 +19,7 @@ import java.util.NoSuchElementException;
 @Component
 public class SetupDevUsers implements ApplicationRunner {
 
+    TheaterRepository theaterRepository;
     CinemaRepository cinemaRepository;
 
     UserWithRolesRepository userWithRolesRepository;
@@ -24,11 +27,12 @@ public class SetupDevUsers implements ApplicationRunner {
     PasswordEncoder pwEncoder;
     String passwordUsedByAll;
 
-    public SetupDevUsers(UserWithRolesRepository userWithRolesRepository,RoleRepository roleRepository,PasswordEncoder passwordEncoder, CinemaRepository cinemaRepository) {
+    public SetupDevUsers(UserWithRolesRepository userWithRolesRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, CinemaRepository cinemaRepository, TheaterRepository theaterRepository) {
         this.userWithRolesRepository = userWithRolesRepository;
         this.roleRepository = roleRepository;
         this.pwEncoder = passwordEncoder;
         this.cinemaRepository = cinemaRepository;
+        this.theaterRepository = theaterRepository;
 
         passwordUsedByAll = "test12";
     }
@@ -73,13 +77,29 @@ public class SetupDevUsers implements ApplicationRunner {
         userWithRolesRepository.save(user3);
         userWithRolesRepository.save(user4);
 
-
+        //Test data for cinamas
         Cinema cinema1 = new Cinema();
         cinema1.setId(1);
         cinema1.setName("Biograf1");
         cinema1.setNumberOfTheaters(2);
         cinema1.setTotalCapacity(350);
         cinemaRepository.save(cinema1);
+
+        //Test data for theaters
+        Theater theater1 = new Theater();
+        theater1.setId(1);
+        theater1.setName("Biografsal 1");
+        theater1.setNumberOfTheaterRows(20);
+        theater1.setNumberOfSeatsInARow(12);
+        theaterRepository.save(theater1);
+
+        Theater theater2 = new Theater();
+        theater2.setId(2);
+        theater2.setName("Biografsal 2");
+        theater2.setNumberOfTheaterRows(25);
+        theater2.setNumberOfSeatsInARow(16);
+        theaterRepository.save(theater2);
+
 
     }
 }
