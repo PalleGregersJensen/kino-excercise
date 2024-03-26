@@ -14,7 +14,7 @@ public class Cinema {
     private int id;
     private String name;
     private int numberOfTheaters;
-    private int totalCapacity;
+    //private int totalCapacity;
 
     public int getId() {
         return id;
@@ -40,13 +40,13 @@ public class Cinema {
         this.numberOfTheaters = numberOfTheaters;
     }
 
-    public int getTotalCapacity() {
-        return totalCapacity;
-    }
+    //public int getTotalCapacity() {
+    //    return totalCapacity;
+    //}
 
-    public void setTotalCapacity(int totalCapacity) {
-        this.totalCapacity = totalCapacity;
-    }
+    //public void setTotalCapacity(int totalCapacity) {
+    //    this.totalCapacity = totalCapacity;
+    //}
 }
 
 

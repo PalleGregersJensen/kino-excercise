@@ -82,7 +82,7 @@ public class SetupDevUsers implements ApplicationRunner {
         cinema1.setId(1);
         cinema1.setName("Biograf1");
         cinema1.setNumberOfTheaters(2);
-        cinema1.setTotalCapacity(350);
+        //cinema1.setTotalCapacity(350);
         cinemaRepository.save(cinema1);
 
         //Test data for theaters
@@ -91,6 +91,7 @@ public class SetupDevUsers implements ApplicationRunner {
         theater1.setName("Biografsal 1");
         theater1.setNumberOfTheaterRows(20);
         theater1.setNumberOfSeatsInARow(12);
+        theater1.setCinema(cinema1);
         theaterRepository.save(theater1);
 
         Theater theater2 = new Theater();
@@ -98,6 +99,7 @@ public class SetupDevUsers implements ApplicationRunner {
         theater2.setName("Biografsal 2");
         theater2.setNumberOfTheaterRows(25);
         theater2.setNumberOfSeatsInARow(16);
+        theater2.setCinema(cinema1);
         theaterRepository.save(theater2);
 
 

@@ -1,9 +1,6 @@
 package dat3.kino_excercise.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Theater {
@@ -13,6 +10,9 @@ public class Theater {
     private String name;
     private int numberOfTheaterRows;
     private int numberOfSeatsInARow;
+    @ManyToOne
+    @JoinColumn(name = "cinema_id_fk")
+    private Cinema cinema ;
 
 
     public int getId() {
@@ -45,5 +45,13 @@ public class Theater {
 
     public void setNumberOfSeatsInARow(int numberOfSeatsInARow) {
         this.numberOfSeatsInARow = numberOfSeatsInARow;
+    }
+
+    public Cinema getCinema() {
+        return cinema;
+    }
+
+    public void setCinema(Cinema cinema) {
+        this.cinema = cinema;
     }
 }

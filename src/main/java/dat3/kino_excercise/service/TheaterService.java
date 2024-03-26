@@ -30,4 +30,8 @@ public class TheaterService {
         return theaterDtoList;
     }
 
+    public Theater createNewTheater(Theater theater) {
+        return theaterRepository.save(theater);
+    }
+
 }

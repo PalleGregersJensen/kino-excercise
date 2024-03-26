@@ -5,13 +5,13 @@ import dat3.kino_excercise.entity.Cinema;
 public class CinemaDto {
     private int id;
     private String name;
-    private int totalCapacity;
+    //private int totalCapacity;
     private int numberOfTheaters;
 
     public CinemaDto(Cinema c) {
         this.id = c.getId();
         this.name = c.getName();
-        this.totalCapacity = c.getTotalCapacity();
+    //    this.totalCapacity = c.getTotalCapacity();
         this.numberOfTheaters = c.getNumberOfTheaters();
     }
 
@@ -31,13 +31,13 @@ public class CinemaDto {
         this.name = name;
     }
 
-    public int getTotalCapacity() {
-        return totalCapacity;
-    }
+    //public int getTotalCapacity() {
+    //    return totalCapacity;
+    //}
 
-    public void setTotalCapacity(int totalCapacity) {
-        this.totalCapacity = totalCapacity;
-    }
+//    public void setTotalCapacity(int totalCapacity) {
+  //      this.totalCapacity = totalCapacity;
+    //}
 
     public int getNumberOfTheaters() {
         return numberOfTheaters;
