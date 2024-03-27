@@ -1,14 +1,17 @@
 package dat3.kino_excercise.configuration;
 
 import dat3.kino_excercise.entity.Cinema;
+import dat3.kino_excercise.entity.Movie;
 import dat3.kino_excercise.entity.Theater;
 import dat3.kino_excercise.repository.CinemaRepository;
+import dat3.kino_excercise.repository.MovieRepository;
 import dat3.kino_excercise.repository.TheaterRepository;
 import dat3.kino_excercise.service.CinemaService;
 import dat3.security.entity.Role;
 import dat3.security.entity.UserWithRoles;
 import dat3.security.repository.RoleRepository;
 import dat3.security.repository.UserWithRolesRepository;
+import org.apache.catalina.filters.ExpiresFilter;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,6 +22,8 @@ import java.util.NoSuchElementException;
 @Component
 public class SetupDevUsers implements ApplicationRunner {
 
+    MovieRepository movieRepository;
+
     TheaterRepository theaterRepository;
     CinemaRepository cinemaRepository;
 
@@ -27,12 +32,13 @@ public class SetupDevUsers implements ApplicationRunner {
     PasswordEncoder pwEncoder;
     String passwordUsedByAll;
 
-    public SetupDevUsers(UserWithRolesRepository userWithRolesRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, CinemaRepository cinemaRepository, TheaterRepository theaterRepository) {
+    public SetupDevUsers(UserWithRolesRepository userWithRolesRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, CinemaRepository cinemaRepository, TheaterRepository theaterRepository, MovieRepository movieRepository) {
         this.userWithRolesRepository = userWithRolesRepository;
         this.roleRepository = roleRepository;
         this.pwEncoder = passwordEncoder;
         this.cinemaRepository = cinemaRepository;
         this.theaterRepository = theaterRepository;
+        this.movieRepository = movieRepository;
 
         passwordUsedByAll = "test12";
     }
@@ -94,6 +100,7 @@ public class SetupDevUsers implements ApplicationRunner {
         theater1.setCinema(cinema1);
         theaterRepository.save(theater1);
 
+        //Test data for theaters
         Theater theater2 = new Theater();
         theater2.setId(2);
         theater2.setName("Biografsal 2");
@@ -102,6 +109,27 @@ public class SetupDevUsers implements ApplicationRunner {
         theater2.setCinema(cinema1);
         theaterRepository.save(theater2);
 
+        //Test data for movies
+        Movie movie1 = new Movie();
+        movie1.setId(1);
+        movie1.setTitle("Filmtitel 1");
+        movie1.setDescription("Virkelig god film. Se den!");
+        movie1.setTrailerUrl("https://www.dr.dk");
+        movieRepository.save(movie1);
+
+        Movie movie2 = new Movie();
+        movie2.setId(2);
+        movie2.setTitle("Filmtitel 2");
+        movie2.setDescription("Virkelig, virkelig god film. Se den!");
+        movie2.setTrailerUrl("https://www.dr.dk");
+        movieRepository.save(movie2);
+
+        Movie movie3 = new Movie();
+        movie3.setId(3);
+        movie3.setTitle("Filmtitel 3");
+        movie3.setDescription("Virkelig, virkelig, virkelig god film. Se den!");
+        movie3.setTrailerUrl("https://www.dr.dk");
+        movieRepository.save(movie3);
 
     }
 }
