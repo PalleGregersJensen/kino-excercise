@@ -2,9 +2,11 @@ package dat3.kino_excercise.configuration;
 
 import dat3.kino_excercise.entity.Cinema;
 import dat3.kino_excercise.entity.Movie;
+import dat3.kino_excercise.entity.MovieShow;
 import dat3.kino_excercise.entity.Theater;
 import dat3.kino_excercise.repository.CinemaRepository;
 import dat3.kino_excercise.repository.MovieRepository;
+import dat3.kino_excercise.repository.MovieShowRepository;
 import dat3.kino_excercise.repository.TheaterRepository;
 import dat3.kino_excercise.service.CinemaService;
 import dat3.security.entity.Role;
@@ -17,10 +19,13 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 
 @Component
 public class SetupDevUsers implements ApplicationRunner {
+
+    MovieShowRepository movieShowRepository;
 
     MovieRepository movieRepository;
 
@@ -32,13 +37,14 @@ public class SetupDevUsers implements ApplicationRunner {
     PasswordEncoder pwEncoder;
     String passwordUsedByAll;
 
-    public SetupDevUsers(UserWithRolesRepository userWithRolesRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, CinemaRepository cinemaRepository, TheaterRepository theaterRepository, MovieRepository movieRepository) {
+    public SetupDevUsers(UserWithRolesRepository userWithRolesRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, CinemaRepository cinemaRepository, TheaterRepository theaterRepository, MovieRepository movieRepository, MovieShowRepository movieShowRepository) {
         this.userWithRolesRepository = userWithRolesRepository;
         this.roleRepository = roleRepository;
         this.pwEncoder = passwordEncoder;
         this.cinemaRepository = cinemaRepository;
         this.theaterRepository = theaterRepository;
         this.movieRepository = movieRepository;
+        this.movieShowRepository = movieShowRepository;
 
         passwordUsedByAll = "test12";
     }
@@ -131,5 +137,15 @@ public class SetupDevUsers implements ApplicationRunner {
         movie3.setTrailerUrl("https://www.dr.dk");
         movieRepository.save(movie3);
 
+        //Testdata for movieshows
+        MovieShow movieShow1 = new MovieShow();
+        movieShow1.setId(1);
+        LocalDateTime startDateTime = LocalDateTime.of(2024, 4, 3, 10, 0); // For eksempel kl. 10:00 den 3. april 2024
+        movieShow1.setStartTimestamp(startDateTime);
+        LocalDateTime endDateTime = LocalDateTime.of(2024, 4, 3, 12, 0); // For eksempel kl. 10:00 den 3. april 2024
+        movieShow1.setEndTimeStamp(endDateTime);
+        movieShow1.setMovie(movie1);
+        movieShow1.setTheater(theater2);
+        movieShowRepository.save(movieShow1);
     }
 }
